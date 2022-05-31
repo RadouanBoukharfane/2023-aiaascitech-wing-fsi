@@ -1,0 +1,180 @@
+\documentclass[conf]{new-aiaa}
+%=============================================================
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[version=4]{mhchem}
+\usepackage{siunitx}
+\usepackage{longtable,tabularx}
+\usepackage{fixme}
+\DeclareGraphicsExtensions{.ps}
+\DeclareGraphicsRule{.ps}{pdf}{.pdf}{`ps2pdf -dEPSCrop -dNOSAFER #1 \noexpand\OutputFile}
+\setlength\LTleft{0pt}
+\hypersetup{colorlinks=true}
+\usepackage{tikz}
+\usepackage{subcaption}
+\newcommand{\average}[1]{\langle #1 \rangle}
+\newcommand{\Rey}{\mathcal{R}\mathfrak{e}}
+%=============================================================
+\fxsetup{status=draft, layout=inline, theme=color}
+%=============================================================
+\title{Understanding Dynamic Interaction Between Low Re Aerodynamic Load and Flexible-Biomimetic Wings by FSI Modeling}
+%=============================================================
+\author{Smail Boughou\footnote{PhD Candidate, smail.boughou@uir.ac.ma , AIAA student member}}
+\author{Ashraf. A. Omar\footnote{Professor, ashraf.omar@uir.ac.ma, AIAA Senior Member}}
+\author{Omer. A. Elsayed\footnote{Professor, omer.almatbagi@uir.ac.ma}}
+\affil{International University of Rabat (UIR), School of Aerospace and Automotive Engineering, LERMA, Rabat-Sala El Jadida, Morocco}
+\author{Radouan Boukharfane
+\footnote{Research \& Education Fellow, radouan.boukharfane@um6p.ma, AIAA Member}}
+\affil{Mohammed VI Polytechnic University (UM6P), MSDA group, Benguerir, Morocco}
+\author{Daniel J. Inman
+\footnote{Harm Buning Collegiate Professor of Aerospace, daninman@umich.edu, AIAA Fellow}}
+\affil{Department of Aerospace Engineering, University of Michigan, 1320 Beal Ave, Ann Arbor, MI 48109, USA}
+%=============================================================
+\linespread{1.4}
+%=============================================================
+\begin{document}
+%=============================================================
+\maketitle
+%=============================================================
+\begin{abstract}
+Since previous work highlighted the need to evaluate aerodynamic load on airfoil to gain a better understanding of the aero-structural features in turbulent flow conditions.
+%
+In the present work, we investigate the behavior of flexibility of bio-inspired wings.
+%
+These wingtips, like avian principle feathers, are meant to control flow.
+%
+The behavior of the aerodynamic response to the flexible surface of wings are examined.
+%
+In the course of this work, the validation is performed for a NACA6409 airfoil considering a rigid segment of 40\% and flexible segment 60\% chord length in order to test the aero-structure behavior for an aerodynamic load of air flow at low Reynolds number ($\Rey$) lower tha  $5\times 10^5$.
+%
+By testing two different Young's modulus ($\mathcal{E}= 689.5$ MPa and $2.5$ GPa), results indicate that the objectives were only partially met for the high $\mathcal{E}$.
+%
+The results suggest that $\mathcal{E}= 2.5$ GPa is a promising alternative to replicate the feather and will be used in further investigation of the bird-like wings. 
+\end{abstract}
+
+\section{Nomenclature}
+{\renewcommand\arraystretch{0.8}
+\noindent\begin{longtable*}{@{}l @{\quad=\quad} l@{}}
+$\mathrm{UAV}$        & Unmanned Aerial Vehicle \\
+$\mathcal{U}_\infty$  & Freestream velocity \\
+$c$                   & chord length \\
+$\nu$                 & kinematic viscosity \\
+$\Rey$                & Reynolds Number ($\Rey=\mathcal{U}_\infty c/\nu$) \\
+$\mathcal{E}$         & Young's Modulus \\
+$\mathcal{L}$         & Flexible Trailing Edge \\
+$\Delta t$            & time step \\
+$\mathcal{F}_x$       & $X$ component of the resultant pressure force acting on the vehicle \\
+$\mathcal{F}_y$       & $Y$ component of the resultant pressure force acting on the vehicle \\
+$t^*$                 & time period \\
+\end{longtable*}}
+%=============================================================
+\section{Introduction}
+%=============================================================
+\lettrine{T}he comparison of the aerodynamic efficiency of gliding birds against UAVs is insightful for a better understanding of natural flight.
+%
+There has been an increased recognition that more attention needs to be paid to morphing wings. Wing morphing allows gulls to modulate static pitch stability during gliding \cite{harvey2022birds}. 
+%
+The morphing ability of the flexible membrane wing is provided by its flexibility, which allows it to adaptively alter the shape under aerodynamic loading.
+%
+The aerodynamic performance modeling and flow control are drawing the interest of zoologists, biologists, and the concerned aerodynamics community.
+%
+As a result, these researches combine the biological theory of natural flying with aerodynamic methodologies to address MAVs based on bird endurance.
+%
+Flexible wing is a successful way for improving the aerodynamic robustness of tiny fixed wing drones operating in uncertain air situations by using a revolutionary biomimetic design.
+%
+The aim is to introduce a multidisciplinary approach to the study of biologically influenced flights by coupling aerodynamics, structure, and flight mechanics.
+%
+
+The birds wing aerodynamic is different in behavior compared to the conventional man-made wings as \citet{withers1981aerodynamic} found that the bird wings perform with low drag generally had low maximum lift coefficients, whereas wings with high maximum lift coefficients had high drag coefficients. 
+%
+Their wings are models for the construction as noise reducing application \cite{bachmann2010anatomical}.
+%
+Early studies on experimental biology focused on the material properties testing of the biological flights such as the wings and feathers structures \cite{bachmann2012flexural}.
+%
+Among the studied species is the owl. They are known for their silent flight because of the features in its wings that promote smooth flow \cite{jaworski2020aeroacoustics,geyer2016silent}.
+% 
+Implementation of biomimetic approach is meant to replicate the feather effects on aerodynamic performance \cite{hedenstrom2017wind}. 
+%
+A thin and feather-like shapes that have a finite trailing edge thickness were designed by \citet{ananda2018aerodynamic} by using a multi-point inverse airfoil design technique in PROFOIL \cite{AirfoilDesignSoftwarefortheWeb} to design airfoil families (AS6091 to AS6099).
+%
+It consists of modifications in the finite trailing thickness between 4\%–6\% and can perform efficiently at the same bird Reynolds number scales ($10^4$-$10^5$).
+%
+\citet{harvey2022review} focused their survey on various possible controls provided by bio-inspired morphing that engineering studies could validate and incorporate to enhance flight maneuverability.
+%
+Using morphing mechanisms including camber morphing techniques, wing morphing can be utilized to alter lift distributions and generate longitudinal control (cf. Fig.~\ref{fig:camberMorphing}.
+%
+\begin{figure}[hbt!]
+\centering
+\includegraphics[width=0.9\textwidth]{figs/morph-crop.pdf}
+\caption{Different UAV implementations of avian-inspired wing camber morphing spanwise cambering and chord-wise morphing \cite{harvey2022review}.}
+\label{fig:camberMorphing} 
+\end{figure}
+%
+A deeper understanding of their control response in dynamic and turbulent environments is required, concluded the review.
+%
+This camber-morphing airfoil method extends prior work by its unique consideration of the instantaneous flow control \cite{gamble2020aeroelastic,gamble2020load}.
+
+Although some attempts have been made to address morphing wings, much of the work in this area is limited to steady CFD predictions of the original and morphing airfoils.
+%
+As a first step to understanding how the flow responds to dynamic morphing flap deflection,  insightful work is presented by \cite{abdessemed2018morphing} using dynamic meshing to perform CFD analyses.
+%
+The NACA 0012 airfoil fitted with a morphing trailing edge (TE) flap showed potential for future applications. 
+%
+Here it is reported that those studies neglected the dynamic aspect of the interaction between fluid and wings.
+%
+In these directions, a growing field of researchers studying and developing avian-inspired morphing aircraft focused on the study of the morphing wings.
+%
+\citet{gamble2020aeroelastic} found that the bio--inspired flexible airfoil maintained lift at Reynolds numbers below $1.5\times 10^5$, but at greater Reynolds numbers, the flexible airfoil alleviated the lift force and experienced trailing edge displacement.
+%
+\citet{murayama2021flexible} in their study showed the effectiveness of flexible flaps inspired by bird feathers can improve aerodynamic robustness in low Reynolds number wings.
+%
+It reduces the fluctuations of aerodynamic forces in a perturbed flow behind an oscillating plate by suppressing large-scale vortex shedding. 
+%
+In previous work on understanding the low Re aerodynamic phenomena encountered while studying the owl-like airfoil \cite{boughou2022low} showed the unsteadiness of the aerodynamic coefficients.
+%
+The aero-structural response to the aerodynamic load is the motive behind the work presented in this paper.
+
+The role of feather morphing hasn't been thoroughly investigated, and its impact on aerodynamics is unknown. 
+%
+The aero-structural response of a flexible airfoil designed using biologically inspired structural and material data from feathers requires studies that concentrate on evaluating aerodynamic load and the aero-structural features in turbulent situations.
+%
+In the current study on bio-inspired flexible wings, we aim to make use of existing research in the field and complete several objectives. 
+%
+First, we examine bio-inspired structure requirements  necessary to capture both flow field and structural analysis. 
+%
+Computational modeling can provide a way to develop predictive relationships between morphological traits and their impact on aerodynamic performance through a series of flexibility conditions that will be computed using Fluid-Structure interaction (FSI).
+%
+One of the primary objectives of evaluations is to investigate the dynamic interaction between Low Re aerodynamic flow and Flexible-Biomimetic NACA6409 as earlier recommended in Ref \cite{gamble2020load} at an angle of attack $15^{\circ}$.
+% 
+Furthermore, the secondary goal of the study is to investigate and assess feather-like airfoils that resemble a cross-section of a bird wing \cite{murayama2021flexible}, which are narrow plate-like feathers that expand toward the trailing edge. 
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% SECTION 2: METHODOLOGY
+% %%%%%%%%%%%%%%%%%%%%%%%%%%
+% \input{methodology}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%
+% %% SECTION 3: RESULTS
+% %%%%%%%%%%%%%%%%%%%%%%%%%%
+% \input{results}
+
+% \newpage
+% \section{Conclusion}
+% Computational modeling can provide a way to develop predictive relationships between morphological traits and their impact on aerodynamic performance through a series of flexibility conditions will be computed using Fluid-Structure interaction (FSI).\\
+% In this study, we have ivestigated the stable FSI for turbulent conditions for bio-inspired structure requirements necessary to capture both flow field and structural analysis. 
+% One of the primary objectives of evaluations is to investigate the dynamic interaction between low $\mathcal{R}_e$ aerodynamic flow and Flexible-Biomimetic NACA6409 as earlier recommended in Ref \cite{Gamble2020b}. 
+% At an angle of attack 15$^{\circ}$, results of the FSI implementation are illustrated for both Young's modulus $\mathcal{E}$ 689.5 MPa and 2.5GPa
+% The study highlights the importance of understanding the stable mechanical properties sufficient for biomimetic adaptive structures and materials. The results suggest that $\mathcal{E}$= 2.5GPa is a promising alternative to replicate the feather and will be used in further investigation of the bird-like wings. 
+
+
+% \section*{Acknowledgments}
+% This work is supported by the International University of Rabat (UIR). Many thanks to the LERMA laboratory for providing the In-house computing resources.
+
+% The authors would like to thank Dr Imad Kissami and Simlab team for the support with the computing facilities of HPC Simlab-cluster of Mohammed VI Polytechnic University at Benguerir (UM6P).
+
+\bibliography{references.bib}
+
+\end{document}

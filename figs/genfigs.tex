@@ -1,0 +1,125 @@
+%==============================================================================
+\documentclass[12pt,times]{elsarticle}
+%==============================================================================
+\usepackage[colorlinks,linkcolor=blue,anchorcolor=red,citecolor=green]{hyperref}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{overpic}
+\usepackage{lineno}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{overpic}
+\usepackage{bm}
+\usepackage{cleveref}
+\usepackage{dcolumn}
+\usepackage{booktabs}
+\usepackage[version=4]{mhchem}
+\usepackage{mathrsfs}
+\usepackage{lineno}
+\usepackage{empheq}
+\usepackage{mathtools}
+\usepackage{wasysym}
+\usepackage{booktabs}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={190mm,257mm},
+ left=2mm,
+ top=20mm,
+ }
+
+
+
+\usepackage{xcolor}
+\pagenumbering{gobble}
+
+\definecolor{col1}{RGB}{216,216,216}
+\definecolor{col2}{RGB}{156,126,187}
+\definecolor{col3}{RGB}{255,156,156}
+
+\def\bm#1{\mbox{\boldmath{$#1$}}}
+\def \etal{\textit{et al.}}
+\def \gdot{\bm{\nabla}\cdot}
+\def \gxy{\xi\!\left(\left|\bm{x}-\bm{y}\right|\right)}
+\def \gxi{\xi\!\left(\left|\bm{x}-\bm{x}_i\right|\right)}
+\def \gxp{\xi\!\left(\left|\bm{x}-\bm{x}_p\right|\right)}
+\def \epsf{\theta_{\mathfrak{f}}}
+\def \epsp{\varepsilon_p}
+\def \meanrho{\overline{\varrho}}
+\def \la{\langle}
+\def \ra{\rangle}
+\def \Sp{\mathcal{S}_{\mathrm{p}}}
+\def \Si{\mathcal{S}_i}
+\def \Vp{\mathscr{V}_{\mathrm{p}}}
+\def \Vi{\mathcal{V}_i}
+\DeclareMathAlphabet{\bbm}{U}{bbm}{m}{sl}
+\newcommand\etc{etc.\ }
+\newcommand\eg{e.g.\ }   
+\providecommand\rightarrowRHD{\relbar\joinrel\mathrel\RHD}
+\providecommand\rightarrowrhd{\relbar\joinrel\mathrel\rhd}
+\providecommand\longrightarrowRHD{\relbar\joinrel\relbar\joinrel\mathrel\RHD}
+\providecommand\longrightarrowrhd{\relbar\joinrel\relbar\joinrel\mathrel\rhd}
+\makeatletter
+\providecommand*\xrightarrowRHD[2][]{\ext@arrow 0055{\arrowfill@\relbar\relbar\longrightarrowRHD}{#1}{#2}}
+\providecommand*\xrightarrowrhd[2][]{\ext@arrow 0055{\arrowfill@\relbar\relbar\longrightarrowrhd}{#1}{#2}}
+\makeatother
+
+
+\usepackage{xcolor}
+\pagenumbering{gobble}
+
+\definecolor{col1}{RGB}{216,216,216}
+\definecolor{col2}{RGB}{156,126,187}
+\definecolor{col3}{RGB}{255,156,156}
+
+% \def\bm#1{\mbox{\boldmath{$#1$}}}
+% \def \etal{\textit{et al.}}
+% \def \gdot{\bm{\nabla}\cdot}
+% \def \gxy{\xi\!\left(\left|\bm{x}-\bm{y}\right|\right)}
+% \def \gxi{\xi\!\left(\left|\bm{x}-\bm{x}_i\right|\right)}
+% \def \gxp{\xi\!\left(\left|\bm{x}-\bm{x}_p\right|\right)}
+% \def \epsf{\theta_{\mathfrak{f}}}
+% \def \epsp{\varepsilon_p}
+% \def \meanrho{\overline{\varrho}}
+% \def \la{\langle}
+% \def \ra{\rangle}
+% \def \Sp{\mathcal{S}_{\mathrm{p}}}
+% \def \Si{\mathcal{S}_i}
+% \def \Vp{\mathscr{V}_{\mathrm{p}}}
+% \def \Vi{\mathcal{V}_i}
+% \DeclareMathAlphabet{\bbm}{U}{bbm}{m}{sl}
+% \newcommand\etc{etc.\ }
+% \newcommand\eg{e.g.\ }   
+% \providecommand\rightarrowRHD{\relbar\joinrel\mathrel\RHD}
+% \providecommand\rightarrowrhd{\relbar\joinrel\mathrel\rhd}
+% \providecommand\longrightarrowRHD{\relbar\joinrel\relbar\joinrel\mathrel\RHD}
+% \providecommand\longrightarrowrhd{\relbar\joinrel\relbar\joinrel\mathrel\rhd}
+% \makeatletter
+% \providecommand*\xrightarrowRHD[2][]{\ext@arrow 0055{\arrowfill@\relbar\relbar\longrightarrowRHD}{#1}{#2}}
+% \providecommand*\xrightarrowrhd[2][]{\ext@arrow 0055{\arrowfill@\relbar\relbar\longrightarrowrhd}{#1}{#2}}
+% \makeatother
+
+\definecolor{col1}{RGB}{217,95,201}
+\definecolor{col2}{RGB}{230,115,0}
+\definecolor{col3}{RGB}{145,145,45}
+
+\usepackage{rotating}
+
+%==============================================================================
+\begin{document}
+
+
+\begin{overpic}[width=1.05\textwidth,unit=1mm]{morph.pdf}
+\put(60,3){\textcolor{black}{\rotatebox{0}{\large Reflexed camber morphing}}}
+\put(8,17){\textcolor{black}{\rotatebox{0}{\large Spanwise cambering}}}
+\put(39,20.2){\textcolor{black}{\rotatebox{0}{\large y}}}
+\put(44.5,14.5){\textcolor{black}{\rotatebox{0}{\large z}}}
+
+\end{overpic}
+
+\end{document}
