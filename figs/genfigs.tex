@@ -104,8 +104,8 @@
 % \providecommand*\xrightarrowrhd[2][]{\ext@arrow 0055{\arrowfill@\relbar\relbar\longrightarrowrhd}{#1}{#2}}
 % \makeatother
 
-\definecolor{col1}{RGB}{217,95,201}
-\definecolor{col2}{RGB}{230,115,0}
+\definecolor{col1}{RGB}{31,30,31}
+\definecolor{col2}{RGB}{128,128,128}
 \definecolor{col3}{RGB}{145,145,45}
 
 \usepackage{rotating}
@@ -114,12 +114,28 @@
 \begin{document}
 
 
-\begin{overpic}[width=1.05\textwidth,unit=1mm]{morph.pdf}
-\put(60,3){\textcolor{black}{\rotatebox{0}{\large Reflexed camber morphing}}}
-\put(8,17){\textcolor{black}{\rotatebox{0}{\large Spanwise cambering}}}
-\put(39,20.2){\textcolor{black}{\rotatebox{0}{\large y}}}
-\put(44.5,14.5){\textcolor{black}{\rotatebox{0}{\large z}}}
+% \begin{overpic}[width=1.05\textwidth,unit=1mm]{morph.pdf}
+% \put(60,3){\textcolor{black}{\rotatebox{0}{\large Reflexed camber morphing}}}
+% \put(8,17){\textcolor{black}{\rotatebox{0}{\large Spanwise cambering}}}
+% \put(39,20.2){\textcolor{black}{\rotatebox{0}{\large y}}}
+% \put(44.5,14.5){\textcolor{black}{\rotatebox{0}{\large z}}}
+% \end{overpic}
 
+
+% \begin{overpic}[width=1.05\textwidth,unit=1mm]{gamble.pdf}
+% \put(78,6){\textcolor{black}{\rotatebox{0}{\large Trailing edge}}}
+% \put(62,6){\textcolor{black}{\rotatebox{0}{\large Leading edge}}}
+% \put(23,2){\textcolor{black}{\rotatebox{14}{\large Secondaries}}}
+% \put(43.5,6){\textcolor{black}{\rotatebox{0}{\large Primaries}}}
+% \put(-3,18){\textcolor{black}{\rotatebox{0}{\large Leading edge}}}
+% \put(-3,9){\textcolor{black}{\rotatebox{0}{\large Trailing edge}}}
+% \end{overpic}
+
+
+\begin{overpic}[width=1.05\textwidth,unit=1mm]{airfoilgeo.pdf}
+\put(17,37){\textcolor{col1}{\rotatebox{0}{\LARGE Rigide segment}}}
+\put(66,36){\textcolor{col2}{\rotatebox{0}{\LARGE Flexible  segment}}}
 \end{overpic}
+
 
 \end{document}

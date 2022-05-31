@@ -104,7 +104,7 @@ It consists of modifications in the finite trailing thickness between 4\%–6\% 
 %
 Using morphing mechanisms including camber morphing techniques, wing morphing can be utilized to alter lift distributions and generate longitudinal control (cf. Fig.~\ref{fig:camberMorphing}.
 %
-\begin{figure}[hbt!]
+\begin{figure}[ht!]
 \centering
 \includegraphics[width=0.9\textwidth]{figs/morph-crop.pdf}
 \caption{Different UAV implementations of avian-inspired wing camber morphing spanwise cambering and chord-wise morphing \cite{harvey2022review}.}
@@ -148,13 +148,68 @@ Computational modeling can provide a way to develop predictive relationships bet
 One of the primary objectives of evaluations is to investigate the dynamic interaction between Low Re aerodynamic flow and Flexible-Biomimetic NACA6409 as earlier recommended in Ref \cite{gamble2020load} at an angle of attack $15^{\circ}$.
 % 
 Furthermore, the secondary goal of the study is to investigate and assess feather-like airfoils that resemble a cross-section of a bird wing \cite{murayama2021flexible}, which are narrow plate-like feathers that expand toward the trailing edge. 
+%=============================================================
+\section{Methods and Material}
+%=============================================================
+To resolve well-known computational aerodynamics and aeroelastic airfoils, an FSI solver is combined with the turbulence model k-$\omega$ SST and large deformation updated Lagrangian finite volume structure solver \cite{cardiff2014large}.
+%
+%
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.9\textwidth]{figs/gamble-crop.pdf}
+\caption{Anatomy of bird airfoil considering rigid and flexible segments \cite{gamble2020aeroelastic}.}
+\label{fig:segments}
+\end{figure}
+%
+As a first step for the ongoing numerical simulations, the validations based on NACA6409 are performed and compared to the results of previous experiments \cite{gamble2020aeroelastic}.
+%
+The previous work of \citet{gamble2020load} considered the modelling of feather-like airfoil as two part segments: rigid part and flexible one (cf. Fig.~\ref{fig:segments}).
+The rachis' structure mimics that of a narrow cavity in general, with a circular cross section at the root and a rectangular cross section at the trailing edge.
+%
+\citet{bachmann2012flexural} provided in various biological experiments on the rachis, different material properties such as the Young's modulus $\mathcal{E}$ (Modulus of elasticity).
+%
+Following the work of \cite{gamble2020aeroelastic}, we use simplified bird airfoil as the basis for this computational study and a Young's modulus $\mathcal{E}$ of both 2.5 GPa and  689.5 MPa chordwise stiffness that may allow feather replication with a constant Young's modulus, through \cite{gamble2020load} used a $\mathcal{E}$ variable ranging [$2.5$-$0.5$ GPa] in stiffness characteristics towards the tip of the feather’s trailing edge.
 
+Airfoil configuration and computational mesh used for the fluid–solid interaction problem is displayed in Fig.~\ref{fig:Ggeometry}.
+%
+As shown in Fig.~\ref{fig:Griddomain}, the computational domain is built with a structured grid using the ANSYS multi-blocks grid ICEM tool, with the appropriate boundary conditions.
+%
+The mesh plane is extruded in span wise direction with a one cell.
+%
+FSI Simulations are performed with an open-source finite volume toolbox for solid mechanics and fluid-solid interaction simulations.
+%
+The finite volume method described in \citet{cardiff2018open} for orthotropic bodies subjected to large strains and large deformations with consideration of updated Lagrangian finite volume solver \cite{tukovic2014openfoam} is implemented in the FSI method described in this work.
+%
+The next section \ref{sec:preliminary} outlines the preliminary resulting data assessed in multiple stages of the study of the NACA6409 airfoil (cf. Fig.~\ref{fig:6409}) at Reynolds number of $10^5$ to $5\times 10^5$ considering a rigid segment of 40\% and flexible segment 60\% chord length (cf. Fig.~\ref{fig:airfoilSegments}).
+%
+\begin{figure}[ht!]
+\centering
+\begin{subfigure}{.4\textwidth}
+\includegraphics[width=2.8in]{Figures/mesh fluid.png}
+\caption{\label{fig:Griddomain} Grid domain}
+\label{fig:airfoildesigna}
+\end{subfigure}
+\begin{subfigure}{.4\textwidth}
+\includegraphics[width=.6\columnwidth]{Figures/naca_airfoil.png}
+\caption{\label{fig:6409}NACA6409}
+\includegraphics[width=.6\columnwidth]{Figures/AS9065_airfoil.png}
+\caption{\label{fig:AS6095}AS6095 airfoil \cite{ananda2018design}}
+\includegraphics[width=.6\columnwidth]{Figures/owl_airfoil.png}
+\caption{\label{fig:owl}Owl airfoil \cite{liu2004avian}}
+\end{subfigure}
+\caption{Computational domain and airfoil profiles.}
+\label{fig:Ggeometry}
+\end{figure}
+%
+In addition, it identifies avenues for further assessment of the man-made-bird-like AS6095 airfoil (cf. Fig.~\ref{fig:AS6095}) designed by \citet{ananda2018design} at a moderate low Reynolds number of $10^5$. Further,  a case study investigates the flow behavior for the known owl-like airfoil (cf. Fig.~\ref{fig:owl}) operating at very low Reynolds of $2.3\times 10^4$.
+%
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=3in]{figs/airfoilgeo-crop.pdf}
+\caption{NACA6409 airfoil segments (40\% ) rigid and (60\%) flexible denoted $\mathcal{L}$}
+\label{fig:airfoilSegments} 
+\end{figure}
 
-
-% %%%%%%%%%%%%%%%%%%%%%%%%%%
-% %% SECTION 2: METHODOLOGY
-% %%%%%%%%%%%%%%%%%%%%%%%%%%
-% \input{methodology}
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%
 % %% SECTION 3: RESULTS
